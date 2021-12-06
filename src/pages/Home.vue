@@ -4,6 +4,11 @@
     <section>
       <div class="container">
 
+        <!--        errors-->
+        <div class="error" v-if="error" style="margin-bottom: 20px;">
+          <p>{{ error }}</p>
+        </div>
+
         <!--        search-->
         <Search
             :value="search"
@@ -43,6 +48,7 @@ export default {
   data() {
     return {
       search: '',
+      error: null,
       repos: null
     }
   },
@@ -57,6 +63,8 @@ export default {
           })
           .catch(err => {
             console.log(err)
+            this.repos = null
+            this.error = 'Can`t find this user'
           })
     }
   }
