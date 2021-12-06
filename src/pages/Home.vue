@@ -16,12 +16,15 @@
             @search="search = $event"
         >
         </Search>
-<!--        buttons-->
-        <button class="btn btnPrimary" @click="getRepos">Search!</button>
 
-<!--        wrapper-->
+        <!--        buttons-->
+        <button v-if="!repos" class="btn btnPrimary" @click="getRepos">Search!</button>
+        <button v-else class="btn btnPrimary" @click="getRepos">Search Again!</button>
+
+        <!--        wrapper-->
         <div class="repos__wrapper" v-if="repos">
-<!--          item-->
+
+          <!--          item-->
           <div class="repos-item" v-for="repo in repos" :key="repo.id">
             <div class="repos-info">
               <a class="link" target="_blank" :href="repo.html_url">{{ repo.name }}</a>
@@ -58,7 +61,7 @@ export default {
       axios
           .get(`https://api.github.com/users/${this.search}/repos`)
           .then(res => {
-            console.log(res)
+            this.error = null
             this.repos = res.data
           })
           .catch(err => {
