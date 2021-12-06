@@ -3,7 +3,11 @@
 
     <section>
       <div class="container">
-        <h1>Home Page</h1>
+        <Search
+            :value="search"
+            placeholder="Type username..."
+        >
+        </Search>
       </div>
 
     </section>
@@ -12,8 +16,17 @@
 </template>
 
 <script>
+
+import Search from "@/components/Search";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {Search},
+  data () {
+    return {
+      search: ''
+    }
+  }
 }
 </script>
 
