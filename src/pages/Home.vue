@@ -11,7 +11,7 @@
             @search="search = $event"
         >
         </Search>
-        <button class="btn btnPrimary">Search!</button>
+        <button class="btn btnPrimary" @click="getRepos">Search!</button>
       </div>
 
     </section>
@@ -30,6 +30,12 @@ export default {
     return {
       search: ''
     }
+  },
+
+  methods: {
+    getRepos () {
+      console.log(`get user ${this.search} repos`)
+    }
   }
 }
 </script>
@@ -39,5 +45,9 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+button {
+  margin-top: 40px;
 }
 </style>
