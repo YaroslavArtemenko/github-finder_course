@@ -22,6 +22,7 @@
 <script>
 
 import Search from "@/components/Search";
+import axios from 'axios'
 
 export default {
   name: "Home",
@@ -33,8 +34,15 @@ export default {
   },
 
   methods: {
-    getRepos () {
-      console.log(`get user ${this.search} repos`)
+    getRepos() {
+      axios
+          .get(`https://api.github.com/users/${this.search}/repos`)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
     }
   }
 }
