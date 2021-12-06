@@ -17,9 +17,9 @@
 <!--        wrapper-->
         <div class="repos__wrapper" v-if="repos">
 <!--          item-->
-          <div class="repo-item" v-for="repo in repos" :key="repo.id">
-            <div class="repo-info">
-              <a target="_blank" :href="repo.html_url">{{ repo.name }}</a>
+          <div class="repos-item" v-for="repo in repos" :key="repo.id">
+            <div class="repos-info">
+              <a class="link" target="_blank" :href="repo.html_url">{{ repo.name }}</a>
               <span>{{ repo.stargazers_count }} ⭐</span>
             </div>
           </div>
@@ -72,5 +72,19 @@ export default {
 
 button {
   margin-top: 40px;
+}
+
+.repos__wrapper {
+  width: 400px;
+  margin: 30px 0;
+}
+
+.repos-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #dbdbdb;
 }
 </style>
