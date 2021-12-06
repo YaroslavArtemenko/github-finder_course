@@ -3,11 +3,15 @@
 
     <section>
       <div class="container">
+
+        <!--        search-->
         <Search
             :value="search"
             placeholder="Type username..."
+            @search="search = $event"
         >
         </Search>
+        <button class="btn btnPrimary">Search!</button>
       </div>
 
     </section>
@@ -22,7 +26,7 @@ import Search from "@/components/Search";
 export default {
   name: "Home",
   components: {Search},
-  data () {
+  data() {
     return {
       search: ''
     }
@@ -30,6 +34,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 </style>
