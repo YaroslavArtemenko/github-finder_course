@@ -11,7 +11,20 @@
             @search="search = $event"
         >
         </Search>
+<!--        buttons-->
         <button class="btn btnPrimary" @click="getRepos">Search!</button>
+
+<!--        wrapper-->
+        <div class="repos__wrapper" v-if="repos">
+<!--          item-->
+          <div class="repo-item" v-for="repo in repos" :key="repo.id">
+            <div class="repo-info">
+              <a target="_blank" :href="repo.html_url">{{ repo.name }}</a>
+              <span>{{ repo.stargazers_count }} ⭐</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </section>
@@ -29,7 +42,8 @@ export default {
   components: {Search},
   data() {
     return {
-      search: ''
+      search: '',
+      repos: null
     }
   },
 
@@ -39,6 +53,7 @@ export default {
           .get(`https://api.github.com/users/${this.search}/repos`)
           .then(res => {
             console.log(res)
+            this.repos = res.data
           })
           .catch(err => {
             console.log(err)
